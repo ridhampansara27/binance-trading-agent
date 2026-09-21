@@ -1,0 +1,39 @@
+[project]
+name = "binance-trading-agent"
+version = "0.1.0"
+description = "Binance Futures trading agent with EMA/RSI strategy, 1m/5m signals, and 15-min trending-symbol selection."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "ridhampansara27" }]
+dependencies = [
+  "binance-sdk-derivatives-trading-usds-futures>=17.0.0",
+  "pandas>=2.0.0",
+  "numpy>=1.24.0",
+  "ta>=0.11.0",
+  "pydantic>=2.0.0",
+  "pyyaml>=6.0",
+  "python-dotenv>=1.0.0",
+  "aiohttp>=3.8.0",
+  "websockets>=11.0",
+  "structlog>=23.0.0",
+  "httpx>=0.24.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0.0", "pytest-asyncio>=0.21.0", "ruff>=0.1.0", "mypy>=1.0.0"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/trend_scalper"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
