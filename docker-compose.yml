@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  trading-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./results:/app/results
+    restart: unless-stopped
+    stop_grace-period: 30s
