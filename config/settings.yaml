@@ -1,0 +1,45 @@
+trading:
+  mode: "backtest"
+  binance_testnet: true
+  live_trading: false
+
+  symbols: ["BTCUSDT", "ETHUSDT"]
+  timeframes: ["1m", "5m"]
+  trend_window_minutes: 15
+  min_24h_volume_usd: 20000000
+
+  leverage: 1
+  risk_per_trade: 0.0025
+  max_daily_loss: 0.01
+  max_open_positions: 1
+
+  taker_fee: 0.0005
+  slippage_bps: 2
+  stop_loss_pct: 0.003
+  take_profit_pct: 0.006
+
+strategy:
+  ema_fast: 9
+  ema_slow: 21
+  rsi_period: 14
+  rsi_lower: 40
+  rsi_upper: 70
+  volume_spike_mult: 1.5
+
+trend_scanner:
+  enabled: true
+  weights:
+    change_24h: 0.5
+    volume_24h: 0.35
+    volatility: 0.15
+  top_n: 3
+  blacklist: []
+
+logging:
+  level: "INFO"
+  file: "logs/trading_agent.log"
+
+telegram:
+  enabled: false
+  bot_token: ""
+  chat_id: ""
