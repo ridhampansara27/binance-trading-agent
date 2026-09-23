@@ -72,8 +72,8 @@ class EMARSIStrategy:
         )
 
     def _compute_stops(self, price: float, side: Side) -> tuple[float, float]:
-        sl_pct = self.cfg.stop_loss_pct
-        tp_pct = self.cfg.take_profit_pct
+        sl_pct = 0.003
+        tp_pct = 0.006
 
         if side == Side.LONG:
             stop_loss = price * (1 - sl_pct)

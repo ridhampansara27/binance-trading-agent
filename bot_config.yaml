@@ -1,0 +1,38 @@
+# Safe template. Copy to bot_config.yaml and fill in fresh DEMO credentials.
+# Never commit bot_config.yaml or paste credentials into chat.
+
+binance:
+  api_key: "6MPtOkaudjt6Lft1ElcEnN29QjmPOrKhpC3a8hqOcjcPbV0Mq1q0NkecAATMOD8n"
+  api_secret: "9abPnuiN4uZmN5Ln2S2ntmsJ7tzN58D3rfuU7nQ4bCl5guIzR16kQXtG6ZyiVAPv"
+  testnet: true
+  recv_window: 10000
+
+trading:
+  max_positions: 1
+  risk_per_trade: 0.005
+  max_daily_loss_pct: 0.02
+
+  testnet_quantities:
+    BTCUSDT: 0.001
+    ETHUSDT: 0.01
+
+strategy:
+  rsi_period: 14
+  rsi_oversold: 30
+  rsi_overbought: 70
+  bb_window: 20
+  bb_std: 2.0
+  mean_reversion_stop_loss_pct: 0.02
+  trend_fast_ema: 12
+  trend_slow_ema: 26
+  adx_window: 14
+  trend_adx_threshold: 25
+  trend_stop_loss_pct: 0.03
+  trend_take_profit_pct: 0.09
+
+symbols:
+  - BTCUSDT
+  - ETHUSDT
+
+timeframes:
+  - 1h

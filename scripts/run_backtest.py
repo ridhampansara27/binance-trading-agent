@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 
 import structlog
+from structlog import stdlib
 
 from trend_scalper.config import load_config
 from trend_scalper.backtester import Backtester
@@ -20,7 +21,7 @@ def setup_logging() -> None:
             structlog.processors.TimeStamper(fmt="iso"),
             structlog.dev.ConsoleRenderer(),
         ],
-        wrapper_class=structlog.make_filtering_bound_logger(structlog.levels.INFO),
+        wrapper_class=structlog.make_filtering_bound_logger(20),  # INFO level
         context_class=dict,
         logger_factory=structlog.PrintLoggerFactory(),
         cache_logger_on_first_use=True,
@@ -42,7 +43,7 @@ async def run_backtest(config_path: str, data_dir: str, output: str) -> None:
 
     for sym in app_cfg.trading.symbols:
         for tf in app_cfg.trading.timeframes:
-            safe_sym = sym.lower().replace("usdt", "")
+            safe_sym = sym.lower()
             file_path = data_path / f"{safe_sym}_{tf}.parquet"
             if file_path.exists():
                 key = f"{sym}_{tf}"

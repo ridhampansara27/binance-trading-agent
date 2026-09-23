@@ -1,0 +1,45 @@
+#!/usr/bin/env python3
+"""Verify public and signed access to Binance USD-M Futures testnet.
+
+This script never places or cancels an order.
+"""
+import asyncio
+import logging
+
+import structlog
+import yaml
+
+from execution_manager import ExecutionManager
+
+
+async def main() -> None:
+    structlog.configure(
+        processors=[
+            structlog.processors.add_log_level,
+            structlog.processors.TimeStamper(fmt="iso"),
+            structlog.dev.ConsoleRenderer(),
+        ],
+        wrapper_class=structlog.make_filtering_bound_logger(logging.INFO),
+        logger_factory=structlog.PrintLoggerFactory(),
+    )
+
+    with open("bot_config.yaml", encoding="utf-8") as file:
+        config = yaml.safe_load(file) or {}
+
+    binance = config.get("binance", {})
+    if not binance.get("testnet", True):
+        raise RuntimeError("Refusing to run: binance.testnet must be true.")
+
+    executor = ExecutionManager(config, testnet=True)
+    public_ok = await executor.check_public_connectivity()
+    account_ok = await executor.check_account_access() if public_ok else False
+
+    print(f"Public testnet connectivity: {'OK' if public_ok else 'FAILED'}")
+    print(f"Signed Futures testnet account access: {'OK' if account_ok else 'FAILED'}")
+
+    if not account_ok:
+        raise SystemExit(1)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
