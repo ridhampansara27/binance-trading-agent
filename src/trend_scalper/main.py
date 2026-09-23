@@ -114,10 +114,10 @@ async def main() -> None:
 
     if mode == "backtest":
         await run_backtest_mode(app_cfg)
-    elif mode in ("testnet", "live"):
-        if app_cfg.trading.live_trading and mode == "live":
-            logger.warning("LIVE TRADING ENABLED - REAL MONEY AT RISK")
+    elif mode == "testnet":
         await run_testnet_or_live_mode(app_cfg)
+    elif mode == "live":
+        logger.error("Live mode is disabled in this repository implementation.")
     else:
         logger.error("Unknown trading mode", mode=mode)
 

@@ -14,7 +14,7 @@ class TradingConfig(BaseModel):
     binance_testnet: bool = Field(default=True)
     live_trading: bool = Field(default=False)
 
-    symbols: list[str] = Field(default_factory=lambda: ["BTCUSDT", "ETHUSDT"])
+    symbols: list[str] = Field(default_factory=lambda: ["BTCUSDT", "ETHUSDT", "SOLUSDT"])
     timeframes: list[str] = Field(default_factory=lambda: ["1m", "5m"])
     trend_window_minutes: int = Field(default=15)
     min_24h_volume_usd: float = Field(default=20_000_000.0)
@@ -22,7 +22,7 @@ class TradingConfig(BaseModel):
     leverage: int = Field(default=1)
     risk_per_trade: float = Field(default=0.0025)
     max_daily_loss: float = Field(default=0.01)
-    max_open_positions: int = Field(default=1)
+    max_open_positions: int = Field(default=2)
 
     taker_fee: float = Field(default=0.0005)
     slippage_bps: int = Field(default=2)

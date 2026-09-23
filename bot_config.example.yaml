@@ -1,0 +1,46 @@
+# Demo/Testnet-only template.
+# Copy to local untracked bot_config.yaml and fill with fresh credentials, or use env vars.
+# Never commit secrets.
+
+binance:
+  api_key: ""
+  api_secret: ""
+  testnet: true
+  recv_window: 10000
+
+trading:
+  max_positions: 2
+  one_position_per_symbol: true
+  max_trades_per_day: 6
+  cooldown_minutes: 15
+  max_daily_loss_pct: 0.01
+  risk_per_trade: 0.0025
+  correlation_guard_enabled: true
+  correlation_guard_groups:
+    - [BTCUSDT, ETHUSDT, SOLUSDT]
+  testnet_quantities:
+    BTCUSDT: 0.002
+    ETHUSDT: 0.03
+    SOLUSDT: 0.3
+
+strategy:
+  rsi_period: 14
+  rsi_oversold: 30
+  rsi_overbought: 70
+  bb_window: 20
+  bb_std: 2.0
+  mean_reversion_stop_loss_pct: 0.02
+  trend_fast_ema: 12
+  trend_slow_ema: 26
+  adx_window: 14
+  trend_adx_threshold: 25
+  trend_stop_loss_pct: 0.03
+  trend_take_profit_pct: 0.09
+
+symbols:
+  - BTCUSDT
+  - ETHUSDT
+  - SOLUSDT
+
+timeframes:
+  - 1h

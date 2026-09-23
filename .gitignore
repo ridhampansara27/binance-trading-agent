@@ -50,6 +50,7 @@ coverage.xml
 
 # Environments
 .env
+.env.*
 .venv
 env/
 venv/
@@ -76,6 +77,15 @@ data/
 
 # Results directory
 results/
+
+# Local bot runtime/config
+bot_config.yaml
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
 
 # Local config overrides
 config/settings.local.yaml
