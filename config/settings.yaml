@@ -3,7 +3,7 @@ trading:
   binance_testnet: true
   live_trading: false
 
-  symbols: ["BTCUSDT", "ETHUSDT"]
+  symbols: ["BTCUSDT", "ETHUSDT", "SOLUSDT"]
   timeframes: ["1m", "5m"]
   trend_window_minutes: 15
   min_24h_volume_usd: 20000000
@@ -11,7 +11,7 @@ trading:
   leverage: 1
   risk_per_trade: 0.0025
   max_daily_loss: 0.01
-  max_open_positions: 1
+  max_open_positions: 2
 
   taker_fee: 0.0005
   slippage_bps: 2
